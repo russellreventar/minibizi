@@ -1,0 +1,126 @@
+#header{
+	display: block;
+	position: relative;
+	float:left;
+	height:70px;
+	width:100%;
+	background: #AFC0D5;
+}
+
+#sidebar{
+	position:absolute;
+	left:0;
+    width:260px;
+    height: 870px;
+    min-height: 700px;
+	background: #282F37;
+	-moz-box-shadow:    4px 0px 4px 0px rgba(0,0,0,0.50);
+	box-shadow:         4px 0px 4px 0px rgba(0,0,0,0.50);
+	z-index: 1;
+}
+
+#content{
+	display: block;
+	position: relative;
+	float:left;
+	height:800px;
+	width:100%;
+	background: #3B444E;
+	
+}
+
+#wrap{
+	background-color: aqua;
+	width:100%;
+	height:100%;
+	position: relative;
+}
+#main{
+	width: 100%;
+	min-width: 1280px;
+	height: 100%;
+	margin-left: 260px;
+}
+
+#sidebar .companyCon{
+	width: 100%;
+	height: 170px;
+	border-bottom: 1px solid rgba(151,151,151,0.3);
+	text-align: center;
+}
+
+#sidebar .companyCon2{
+	width: 100%;
+	height: 200px;
+	border-bottom: 1px solid rgba(151,151,151,0.3);
+}
+
+.ovalImage{
+	width:90px;
+	height: 90px;
+	background: white;
+	border-radius:50%;
+	margin: 20px auto;
+}
+
+#sidebar h1{
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 900;
+	color:white;
+}
+#sidebar h2{
+	margin-top: 5px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 300;
+	color:white;
+}
+
+#graphCon{
+	width:100%;
+	height:50%;
+}
+#tableCon{
+	background: white;
+	width:100%;
+	height:50%;
+	
+}
+/* thead, tbody, tr, td, th { display: block; } */
+#dailySales{
+	width:100%;
+	height: 200px;
+	
+}
+#dailySales tr:nth-of-type(even){
+	background-color: #F6F6F6;
+}
+#dailySales tbody{
+    overflow-y: auto;
+}
+#dailySales tr{
+	height:50px;
+}
+#dailySales td{
+	font-family: 'Source Sans Pro', sans-serif;
+	vertical-align: middle;
+	text-align: center;
+	color: #787878;
+}
+#dailySales th{
+	vertical-align: middle;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 700;
+	font-size: 15px;
+	color: #949494;
+	
+}
+#dailySales th:nth-child(1){
+	width:120px;
+}
+#dailySales th:nth-child(2){
+	width:150px;
+}
+#dailySales th:nth-child(3){
+	width:200px;
+}
+
