@@ -15,6 +15,13 @@ function getUserData($UID){
 	}
 }
 
+function email_exists($email){
+	$result = mysql_query(" SELECT *
+			  				FROM users 
+			  				WHERE Email= '$email'");
+	return (mysql_num_rows($result) >= 1) ? true : false;
+
+}
 function user_exists($username){
 	$result = mysql_query(" SELECT *
 			  				FROM users 
@@ -49,7 +56,7 @@ function login($username,$password){
 }
 
 function logged_in(){
-	return (isset($_COOKIE['user'])) ? true : false;
+	return ($_SESSION['loggedin'] && $_SESSION['loggedin'] == true) ? true : false;
 }
 
 ?>

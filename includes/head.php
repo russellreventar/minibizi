@@ -16,6 +16,8 @@
 	  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,900' rel='stylesheet' type='text/css'>
 
 	  <!-- SCRIPTS -->
-	   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	  <script src="http://code.jquery.com/jquery-latest.min.js"type="text/javascript"></script>
+	  <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+	  <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
 	  <script src="js/core.js"></script>
 </head>

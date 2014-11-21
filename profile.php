@@ -1,10 +1,12 @@
 <?php
 	include 'functions/db_conn.php';
 	include 'functions/users.php';
-	if(!logged_in){
-		/* header("location:index.php"); */
-	}
-	$user_data = getUserData($_COOKIE['user'],'Username', 'Password' , 'Active', 'Email');
+	session_start();
+	if (!logged_in()) {
+		//invalid access
+    	header("location:index.php");
+	} 
+	$user_data = getUserData($_SESSION['id'],'Username', 'Password' , 'Active', 'Email');
 	echo 'Logged In!' . 'Welcome ' . $user_data['Username'];
 	mysql_close();
 ?>
