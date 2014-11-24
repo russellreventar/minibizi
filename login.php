@@ -1,34 +1,19 @@
 <?php
-	
-	include 'functions/db_conn.php';
-	include 'functions/users.php';
-	session_start();
-	$errors[] = array();
-	$username = $_POST['username'];
-	$password = $_POST['password'];
 
-	//client validation
-	if(empty($username) === true){
-		$errors[] =  'empty username field';
-	}else if(empty($password) === true){
-		$errors[] =  'empty password field';
-	}else if(user_exists($username) === false){
-		$errors[] =  'user does not exist' ;
-	}else if(user_active($username) === false){
-		$errors[] = 'user is not activated';
-	}else{
-		
-		$login = login($username, $password);
-		if($login === false){
-			$errors[] =  'Username and password combination is incorrect';
-		}else{
-			//set user cookie
-			//redirect user home
-			mysql_close();
-			$_SESSION['id'] = $login;
-			$_SESSION['loggedin'] = true;
-			header("location:profile.php");
-		}
+include("functions/db.php");
+session_start();
+
+if(isset($_POST['username']) && isset($_POST['password'])){
+	$username=mysqli_real_escape_string($mysqli,$_POST['username']);
+	//todo implement md5
+	$password=mysqli_real_escape_string($mysqli,$_POST['password']);
+	$query = "SELECT UID FROM Users WHERE Username= '$username' and Password='$password'";
+	$result = $mysqli->query($query) or die($mysqli->error.__LINE__);
+	$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
+	if($result->num_rows > 0) {
+		$_SESSION['id']=$row['UID'];
+		echo $row['UID'];
 	}
-	//server validation
+	mysql_close();
+}
 ?>

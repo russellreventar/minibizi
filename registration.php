@@ -1,12 +1,11 @@
 <?php
-	include_once("functions/db_conn.php");
-	include_once("functions/users.php");
+	include_once("functions/db.php");
 
 	if(isset($_POST['firstname']) && 
 	   isset($_POST['lastname']) && 
 	   isset($_POST['user']) && 
 	   isset($_POST['pass']) && 
-	   isset($_POST['email'])){
+	   isset($_POST['email'])){œ
 		
 		$firstname = $_POST['firstname'];
 		$lastname = $_POST['lastname'];
@@ -31,8 +30,10 @@
 ?>
 
 <html>
-	<?php include 'includes/head.php';?>
-	<script src="js/registration.js"></script>
+	<head>
+		<?php include 'includes/head.php';?>
+		<script src="js/registration.js"></script>
+	</head>
 	<body>
 		<div id = "logo">
   	  		<div class = "pulse"></div>

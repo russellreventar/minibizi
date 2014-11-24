@@ -1,8 +1,11 @@
-<?php include 'login.php';?>
+<?php
+session_start();
+if(!empty($_SESSION['id'])){header('Location: home.php');}
+?>
 <!DOCTYPE html>
 <html>
-  <?php include 'includes/head.php';?>
-  
+    <?php include 'includes/head.php';?>
+    <script src="js/index.js"></script>
   <body>
   	<div id = "logo">
   	  	<div class = "pulse"></div>
@@ -15,11 +18,11 @@
   		<div id = "card">
   			<div id = "formCon">
 	  			<h1> Sign in </h1>
-	  			<span id="errorMessage"> Error Message Here</span>
-	  			<form id="loginForm" action = "login.php" method="POST">
-		  			<input class = "loginTextField" type = "text" name = "username" placeholder="username"/>
-		  			<input class = "loginTextField" type = "password" name = "password" placeholder="password"/>
-		  			<input class = "loginButton"type = "submit" value = "LOGIN" />
+	  			<span id="errorMessage"></span>
+	  			<form id="loginForm">
+		  			<input class = "loginTextField" type = "text" id = "username" placeholder="username"/>
+		  			<input class = "loginTextField" type = "password" id = "password" placeholder="password"/>
+		  			<input class = "loginButton" type = "submit" value = "LOGIN" />
 		  		</form>
 		  		<div id = "forgot-signup">
 			  		<a href="forgot.php">Forgot Password?</a> &nbsp&nbsp|&nbsp&nbsp

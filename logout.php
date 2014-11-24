@@ -1,7 +1,8 @@
 <?php
-	$seconds = -10 + time();
-	/* setcookie('user', date("F jS - g:i a"), $seconds); */
-	session_start();
+session_start();
+if(!empty($_SESSION['id'])){
+	$_SESSION['id']='';
 	session_destroy();
-	header("location:index.php");
+}
+header("Location:index.php");
 ?>
