@@ -19,7 +19,7 @@ function login(){
 		data: dataString,
 		error: function(e, xhr){console.log(e);},
 		success: function(data){
-			if(data){
+			if(data > 0){
 				window.location = "home.php";
 			}else{
 				$("#errorMessage").text("Incorrect Username and/or Password");
