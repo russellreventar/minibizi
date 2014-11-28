@@ -102,7 +102,11 @@ function initStock(data) {
 	}
 }
 
-function initEntries(data) { /* console.log(data); */
+function initEntries(data) { console.log(data);
+	$.each(data, function() {
+		console.log(this.Date);
+	});
+
 }
 
 function showEntries(){

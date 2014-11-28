@@ -10,6 +10,10 @@ date_default_timezone_set('EST');
 $datet = date("F j, Y", strtotime("1992-10-15"));
 echo $datet; 
 $today = date("Y-m-d: H:i:s", strtotime("1992-10-15")); 
+
+$time = date("H:i:s", strtotime("now"));
+$date = date("Y-m-d", strtotime("now"));
+echo 'time now: ' . $time. '<br>';
 echo $today;
 $date_parse = date_parse($today);
 /*
@@ -17,13 +21,14 @@ echo $date_parse['year'];
 $date = "2014-10-15";
 */
 $update = array(
-    'DateOpened' => $datet
+    'Date' => $date,
+    'Time' => $time
 );
 //Add the WHERE clauses
 $where_clause = array(
-    'BusinessID' => 3
+    'JournalID' => 3
 );
-$updated = $database->update( 'Businesses', $update, $where_clause, 1 );
+$updated = $database->update( 'Journals', $update, $where_clause, 1 );
 if( $updated )
 {
     echo '<p>Successfully updated '.$where_clause['UserID']. ' to '. $update['Email'].'</p>';
