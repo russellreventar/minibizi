@@ -83,8 +83,7 @@ class Database
 		}
 	}
 	
-/*
-	public function getRow( $query ){
+	public function getRowNotAssoc( $query ){
 		
 		$row = $this->link->query( $query );
 		if( $this->link->error ){
@@ -96,7 +95,6 @@ class Database
 			return $r;
 		}
 	}
-*/
 
 	public function getResults( $query ){
 	
