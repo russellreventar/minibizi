@@ -7,6 +7,8 @@ $database = new Database();
 
 
 date_default_timezone_set('EST');
+$datet = date("F j, Y", strtotime("1992-10-15"));
+echo $datet; 
 $today = date("Y-m-d: H:i:s", strtotime("1992-10-15")); 
 echo $today;
 $date_parse = date_parse($today);
@@ -15,7 +17,7 @@ echo $date_parse['year'];
 $date = "2014-10-15";
 */
 $update = array(
-    'DateOpened' => $today
+    'DateOpened' => $datet
 );
 //Add the WHERE clauses
 $where_clause = array(
