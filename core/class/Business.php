@@ -1,6 +1,6 @@
 <?php
-class Business
-{
+class Business{
+
 	public $allData; //array of all business data
 	public $allEntries;
 	private $db;

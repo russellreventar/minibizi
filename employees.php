@@ -7,10 +7,7 @@
 <html>
 <head>
     <?php include 'core/include/head.php';?>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/cupertino/jquery-ui.css">
-    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script src="js/home.js" type="text/javascript"></script>
+    <script src="js/core.js" type="text/javascript"></script>
     <title>Employees</title>
 </head>
 
@@ -112,12 +109,12 @@
                         <div class="section">
                             <ul>
                                 <li><a href="profile.php">Profile</a></li>
-                                <li><a href="account.php">Account Settings</a></li>
+                                <li><a href="profile.php">Account Settings</a></li>
                             </ul>
                         </div>
 
                         <div class="section">
-                            <a href="changepp.php">Change Profile Picture</a>
+                            <a href="profile.php">Change Profile Picture</a>
                         </div>
 
                         <div class="section-lastchild">

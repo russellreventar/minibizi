@@ -47,7 +47,7 @@ function signup(){
 	
 	//check if username exists
 	$.ajax({
-		url: 'core/handler/handler.php',
+		url: 'core/handler/addUser.php',
 		type: 'POST',
 		dataType: 'text',
 		async: false,

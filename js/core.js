@@ -2,8 +2,24 @@ var currDate = new Date();
 
 $(document).ready(function() {
 	initialize();
+	
+	//when core is done loading load entries
+	if(getCurentFileName() == "home.php"){
+		loadScript('entries.js');
+	}else if(getCurentFileName() == "employees.php"){
+		
+	}else if(getCurentFileName() == "income.php"){
+		
+	}else if(getCurentFileName() == "profile.php"){
+		
+	}else{
+		
+	}
 });
-
+function getCurentFileName(){
+    var pagePathName= window.location.pathname;
+    return pagePathName.substring(pagePathName.lastIndexOf("/") + 1);
+}
 /*------------------------------------------------------------------------
 	INITIALIZATION
 ------------------------------------------------------------------------*/
@@ -105,6 +121,13 @@ function loadStock(data) {
 	}
 }
 
+function loadScript(filename){
+	var fullPath = 'js/'+filename;
+	var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = document.location.protocol + fullPath;
+    document.getElementsByTagName('head')[0].appendChild(script)
+}
 /*------------------------------------------------------------------------
 	EVENT HANDLERS
 ------------------------------------------------------------------------*/
