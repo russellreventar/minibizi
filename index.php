@@ -4,8 +4,9 @@ if(!empty($_SESSION['id'])){header('Location: home.php');}
 ?>
 <!DOCTYPE html>
 <html>
-    <?php include 'includes/head.php';?>
+    <?php include 'core/include/head.php';?>
     <script src="js/index.js"></script>
+    <title>Mini Bizi</title>
   <body>
   	<div id = "logo">
   	  	<div class = "pulse"></div>
@@ -26,7 +27,7 @@ if(!empty($_SESSION['id'])){header('Location: home.php');}
 		  		</form>
 		  		<div id = "forgot-signup">
 			  		<a href="forgot.php">Forgot Password?</a> &nbsp&nbsp|&nbsp&nbsp
-			  		<a href="registration.php">Sign-Up now</a> 
+			  		<a href="signup.php">Sign-Up now</a> 
 			  	</div>
   			</div>
   		</div>

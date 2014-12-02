@@ -8,8 +8,6 @@ class Database
 	public $link;
 
 	public function __construct(){
-		
-		global $connection;
 		$this->host = "localhost";
 		$this->username = "root";
 		$this->password = "root";
@@ -226,15 +224,11 @@ class Database
 		exit;
 	}
 
-	public function lastid(){
-		return $this->link->insert_id;
-	}
-
-	public function __destruct(){
+	protected function __destruct(){
 		$this->disconnect();
 	}
 
-	public function disconnect(){
+	protected function disconnect(){
 		$this->link->close();
 	}
 }

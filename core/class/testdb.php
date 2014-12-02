@@ -35,8 +35,6 @@ if( $updated )
 }
 
 
-
-
 $user = new User();
 
 /* print $row.FirstName; */

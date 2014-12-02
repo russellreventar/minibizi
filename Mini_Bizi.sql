@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Nov 28, 2014 at 11:25 PM
+-- Generation Time: Nov 29, 2014 at 08:23 AM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -52,8 +52,8 @@ CREATE TABLE `Journals` (
 `JournalID` int(11) unsigned NOT NULL,
   `UserID` int(11) DEFAULT NULL,
   `BusinessID` int(11) DEFAULT NULL,
-  `Date` int(11) DEFAULT NULL,
-  `Time` int(11) DEFAULT NULL,
+  `Date` date DEFAULT NULL,
+  `Time` time DEFAULT NULL,
   `NetSales` int(11) DEFAULT NULL,
   `TransactionCount` int(11) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
@@ -63,9 +63,9 @@ CREATE TABLE `Journals` (
 --
 
 INSERT INTO `Journals` (`JournalID`, `UserID`, `BusinessID`, `Date`, `Time`, `NetSales`, `TransactionCount`) VALUES
-(1, 1, 3, NULL, 12, 12322, 2),
-(2, 1, 3, NULL, 12, 1232, 2),
-(3, 1, 4, NULL, 12, 10032, 2);
+(1, 1, 3, '2014-11-28', '18:06:54', 12322, 2),
+(2, 1, 3, '2014-11-28', '18:07:38', 1232, 2),
+(3, 1, 4, '2014-11-28', '18:08:48', 10032, 2);
 
 -- --------------------------------------------------------
 
