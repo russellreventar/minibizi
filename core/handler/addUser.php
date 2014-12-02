@@ -13,7 +13,6 @@ if (isset($_POST['username']) && isset($_POST['password']) &&
 	$firstname	=$_POST['firstname'];
 	$lastname	=$_POST['lastname'];
 
-	
 	$data = array(
 		'Username' => $username,
 		'Password' => $password,

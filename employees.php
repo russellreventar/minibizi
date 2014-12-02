@@ -7,6 +7,7 @@
 <html>
 <head>
     <?php include 'core/include/head.php';?>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
     <script src="js/core.js" type="text/javascript"></script>
     <title>Employees</title>
 </head>
@@ -125,7 +126,9 @@
             </div>
 
             <div id="content">
-
+				<div class="whiteLabel indent" >
+					This section is not of focus for this project but is included for extensibility to future implementations :)
+				</div>
             </div>
         </div>
     </div>

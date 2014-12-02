@@ -6,8 +6,7 @@ class Business{
 	private $db;
 	
 	public function __construct(){
-		$this->allData = NULL;
-		$this->db = new Database();	
+		$this->allData = NULL;			
 	}
 	
 	public static function initWithID($bid){
