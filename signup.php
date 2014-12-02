@@ -1,38 +1,8 @@
-<?php
-	include_once("functions/db.php");
-
-	if(isset($_POST['firstname']) && 
-	   isset($_POST['lastname']) && 
-	   isset($_POST['user']) && 
-	   isset($_POST['pass']) && 
-	   isset($_POST['email'])){œ
-		
-		$firstname = $_POST['firstname'];
-		$lastname = $_POST['lastname'];
-		$user = $_POST['user'];
-		$email = $_POST['email'];
-		$pass = $_POST['pass'];
-		
-		
-		if(user_exists($user)){
-			echo 'username already exists';
-		}else{
-			if(email_exists($email)){
-				echo 'email already exists';
-			}else{
-				 mysql_query("INSERT INTO users (FirstName, LastName, Username, Email,Password) 
-				 				VALUES ('$firstname','$lastname','$user','$email', '$pass')");
-				 header("location:index.php");
-			}
-		}
-	}
-	mysql_close();
-?>
-
+<!DOCTYPE html>
 <html>
 	<head>
-		<?php include 'includes/head.php';?>
-		<script src="js/registration.js"></script>
+		<?php include 'core/include/head.php';?>
+		<script src="js/signup.js"></script>
 	</head>
 	<body>
 		<div id = "logo">
@@ -42,22 +12,23 @@
   		<div id = "tagline" class = "teal-gradient-text">
   			Sign Up
   		</div>
-
+  		<h1 id ="signupMessage"></h1>
+  		<p id ="backIndex"> Click <a href="index.php">here</a> to login</p>
   		<div id="accountinfo">
  
 	  		<div id = "formTitle">
   				<label>ACCOUNT</label>
 	  		</div>
   			<div id = "form">
-  				<form id = "signupForm" action="registration.php" method="POST">
+  				<form id = "signupForm">
 					<div class="textboxLabel">First Name</div>
-					<input id="fname" class = "textbox"type="text" name="firstname" />
+					<input id="fname" class = "textbox"type="text" name="firstname" autocomplete="off"/>
 					<br/>
 					<div class="textboxLabel">Last Name</div>
-					<input id = "lname" class = "textbox"type="text" name="lastname" />
+					<input id = "lname" class = "textbox"type="text" name="lastname" autocomplete="off"/>
 					<br/>
 					<div class="textboxLabel">Username</div>
-					<input id = "uname"class = "textbox"type="text" name="user" />
+					<input id = "uname"class = "textbox"type="text" name="user" autocomplete="off"/>
 					<br/>
 					<div class="textboxLabel">Email</div>
 					<input id = "email" class = "textbox" type="text" name="email" />
@@ -80,14 +51,9 @@
 					<div class="textboxLabel">Business Name</div>
 					<input class = "textbox"type="text" name="businessname" />
 					<br/>
-					<div class="textboxLabel">Location</div>
-					<input class = "textbox"type="text" name="location" />
-					<br/>
-				
-					
   			</div>
   		
-  				<input type="submit" value="Signup!" />
+  				<input type="submit" class="formSubmitButton"value="Signup!" />
 			</form>
   		
   		
