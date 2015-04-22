@@ -1,3 +1,13 @@
+/*
+MINIBIZI - Web Application for small business owners
+CSCI 3230U Final Project
+DEC 3, 2014 11:59pm
+Mark Reventar 100 429 397
+Arnold Cheng
+
+	home.css
+		Stylesheet for home.php,employees.php,income.php,profile.php
+*/
 #wrapper {
 	width:100%;
 	height:100%;
@@ -264,7 +274,8 @@
 
 #sidebar h1 {
 	font-family:'Source Sans Pro',sans-serif;
-	font-weight:900;
+	font-weight:500;
+	font-size: 20px;
 	color:#fff;
 }
 
@@ -381,7 +392,9 @@ select.custom-dropdownSmall {
  background-size: 15px 8px;
  background-position: 76px 12px;
 }
-
+option{
+	background-color: #4e4e4e;
+}
 #DailyEntryPopup{
 	display:none;
 }
@@ -629,8 +642,111 @@ g>g>path[fill="#ffffff"] {
 	font-weight: 18px;
 }
 
+.whiteLabel2{
+	font-family:'Source Sans Pro',sans-serif;
+	color: white;
+	font-weight: 400;
+	font-weight: 18px;
+	font-size: 20px;
+	margin-bottom: 20px;
+}
 
+#userProfile{
+	height: 400px;
+	margin: 20px 0px 0px 50px;
+}
+.avatar{
+	background:url(../res/images/bill.jpg) no-repeat;
+	background-size:100% 100%;
+	width:100px;
+	height:100px;
+	border-radius:50%;
+	float: left;
+}
+.pInfo{
+	float:left;
+	width:400px;
+	margin: 20px 0px 50px 15px;
+}
+#pUsername{
+	font-family:'Source Sans Pro',sans-serif;
+	color: white;
+	font-weight: 400;
+	font-weight: 18px;
+	font-size: 30px;
+	line-height: 50px;
+}
 
+#pFullname{
+	font-family:'Source Sans Pro',sans-serif;
+	color: white;
+	font-weight: 200;
+	font-size: 20px;
+}
+#pEmail{
+	font-family:'Source Sans Pro',sans-serif;
+	color: #c7c7c7;
+	font-weight: 400;
+	font-size: 18px;
+}
+#changePass{
+	clear: both;
+	font-family:'Source Sans Pro',sans-serif;
+}
 
+.cTextbox {
+	margin-bottom: 15px;
+	display:inline-block;
+	padding:0;
+	border:none;
+	padding:0 14px;
+	height:23px;
+	width:150px;
+	font-size:13px;
+	border:4px solid #D8D8D8;
+	margin-left: 20px;
+}
 
+#changePass .deLabel{
+	padding-top: 5px;
+	display: inline-block;
+	vertical-align: middle;
+    float: left;
+    clear: left;
+    width: 130px;
+	color: #65adef;
+}
+.cSubmit{
+	display:block;
+	padding:0;
+	border:none;
+	border-radius:4px;
+	height:30px;
+	width:100px;
+/* Rectangle 13: */
+	background: #25f885;
+	-moz-box-shadow:2px 2px 0 0 rgba(86,86,86,0.73);
+	box-shadow:2px 2px 0 0 rgba(86,86,86,0.73);
+	color:#000000;
+	cursor: pointer;
+	font-weight: 400;
+}
+.cSubmit:hover {
+	background:#47E48F;
+}
+
+#changePass .error{
+	color:#df3333;
+	font-size: 13px;
+}
+.bigTitle{
+	font-family:'Source Sans Pro',sans-serif;
+	color: #27f368;
+	font-weight: 400;
+	font-size: 40px;
+	margin-bottom: 20px;
+}
+#changeMessage{
+	margin-bottom: 20px;
+}
 

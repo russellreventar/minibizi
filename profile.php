@@ -1,3 +1,19 @@
+<!--
+MINIBIZI - Web Application for small business owners
+CSCI 3230U Final Project
+DEC 3, 2014 11:59pm
+Mark Reventar 100 429 397
+Arnold Cheng
+
+profile.php
+	Show user information and change password
+		
+	-user profile picture
+	-username,fullname and email
+	-form to change users password. Current password must be correct
+		new password cannot be equivalent to old password.
+-->
+
 <?php
     session_start();
     if (empty($_SESSION['id'])) {header("location:index.php");} 
@@ -7,7 +23,6 @@
 <html>
 <head>
     <?php include 'core/include/head.php';?>
-    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
     <script src="js/core.js" type="text/javascript"></script>
     <title>Income Statement</title>
 </head>
@@ -94,7 +109,7 @@
         <div id="main">
             <div id="header">
                 <div id="headerLogo"></div>
-
+				
                 <div id="nav">
                     <ul>
                         <li><a href="home.php">Home</a></li>
@@ -126,8 +141,30 @@
             </div>
 
             <div id="content">
-				<div class="whiteLabel indent" >
-					This section is not of focus for this project but is included for extensibility to future implementations :)
+				<div id = "userProfile">
+					<div class="bigTitle">Your Account</div>
+					<div class="avatar"></div>
+					<div class="pInfo">
+						<div id="pUsername">sdfsdsdfsd</div>
+						<div id="pFullname"> sdsdf sdfsd</div>
+						<div id="pEmail">sfsdsdfs</div>
+					</div>
+					
+					<form id="changePass">
+						<h1 class="whiteLabel2">Change Password</h1>
+						<div id="changeMessage"></div>
+						<div class="deLabel">Current Password </div>
+						<input id="cpCurrent" class = "cTextbox"autocomplete="off" type="password" name="currPass"/>
+						<br/>
+						<div class="deLabel">New Password </div>
+						<input id="cpNew" class = "cTextbox"autocomplete="off" type="password" name="newPass"/>
+						<br/>
+						<div class="deLabel">Confirm Password </div>
+						<input id="expenses" class = "cTextbox"autocomplete="off" type="password" name="confirmPass"/>
+						<input id="cpNewConfirm" class="cSubmit"type="submit" value="Change"  />
+					</form>
+
+					
 				</div>
             </div>
         </div>

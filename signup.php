@@ -1,3 +1,19 @@
+<!--
+MINIBIZI - Web Application for small business owners
+CSCI 3230U Final Project
+DEC 3, 2014 11:59pm
+Mark Reventar 100 429 397
+Arnold Cheng
+
+signup.php
+	Form to allow the user to register to website
+	
+	- website logo (link->index.php)
+	- message popup
+	- success link (link->index.php)
+	- signup form
+-->
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -15,7 +31,7 @@
   		<h1 id ="signupMessage"></h1>
   		<p id ="backIndex"> Click <a href="index.php">here</a> to login</p>
   		<div id="accountinfo">
- 
+
 	  		<div id = "formTitle">
   				<label>ACCOUNT</label>
 	  		</div>
@@ -39,26 +55,9 @@
 					<div class="textboxLabel">Retype Password </div>
 					<input id = "passConfirm" class = "textbox" type="password" name="passConfirm" />
 					<br/>
-  			</div>
-  		
-  		
-  			<div id = "formTitle">
-  				<label>BUSINESS</label>
-  				<label id="sub">(optional)</label>
-	  		</div>
-  			<div id = "form">
- 
-					<div class="textboxLabel">Business Name</div>
-					<input class = "textbox"type="text" name="businessname" />
-					<br/>
-  			</div>
-  		
-  				<input type="submit" class="formSubmitButton"value="Signup!" />
-			</form>
-  		
-  		
+					<input type="submit" class="formSubmitButton"value="Signup!" />
+				</form>
+  			</div>  		
   		</div>
-  		
-  	  		
 	</body>
 </html>

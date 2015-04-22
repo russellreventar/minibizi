@@ -1,3 +1,21 @@
+<!--
+MINIBIZI - Web Application for small business owners
+CSCI 3230U Final Project
+DEC 3, 2014 11:59pm
+Mark Reventar 100 429 397
+Arnold Cheng
+
+index.php
+	initial index of website
+	
+	- website logo
+	- website tagline
+	- login form
+	- link-> forgot.php
+	- link-> signup.php
+	- website footer
+-->
+
 <?php
 session_start();
 if(!empty($_SESSION['id'])){header('Location: home.php');}
@@ -21,8 +39,8 @@ if(!empty($_SESSION['id'])){header('Location: home.php');}
 	  			<h1> Sign in </h1>
 	  			<span id="errorMessage"></span>
 	  			<form id="loginForm">
-		  			<input class = "loginTextField" type = "text" id = "username" placeholder="username"/>
-		  			<input class = "loginTextField" type = "password" id = "password" placeholder="password"/>
+		  			<input class = "loginTextField" type = "text" id = "username" placeholder="username" name = "username"/>
+		  			<input class = "loginTextField" type = "password" id = "password" placeholder="password" name = "password"/>
 		  			<input class = "loginButton" type = "submit" value = "LOGIN" />
 		  		</form>
 		  		<div id = "forgot-signup">
@@ -32,6 +50,7 @@ if(!empty($_SESSION['id'])){header('Location: home.php');}
   			</div>
   		</div>
   	</div>
+  	<div id="hint"class="whiteLabel">username: bill &nbsp&nbsp password: pass123</div>
   	<div id = "footer">
   		MiniBizi &copy 2014 All Rights Reserved
   		<ul>

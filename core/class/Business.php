@@ -1,118 +1,184 @@
 <?php
+/*
+MINIBIZI - Web Application for small business owners
+CSCI 3230U Final Project
+DEC 3, 2014 11:59pm
+Mark Reventar 100 429 397
+Arnold Cheng
+
+	Business.php
+		business object for handling business related queries 
+		to the database
+*/
+include_once('Database.php');
+
 class Business{
 
-	public $allData; //array of all business data
-	public $allEntries;
-	private $db;
+	public $allData; 	//array of all business info
+	public $allEntries; //array of all business entries
+	private $db;		//database connection
 	
+	/*	construct
+			object constructor
+			allocate variables
+			create new database connection
+	*/
 	public function __construct(){
-		$this->allData = NULL;			
+		$this->allData = NULL;
+		$this->allEntries = NULL;
+		$this->db = new Database();	
 	}
 	
+	/*	construct::initWithID
+			initialize object with a provided businessID
+	*/
 	public static function initWithID($bid){
 		$instance = new self();
 		$instance->loadByID($bid);
 		return $instance;
 	}
 	
-	public static function initWithOwnerID($uid){
+	/*	construct::initWithUserID
+			initialize object with the users ID
+	*/
+	public static function initWithUserID($uid){
 		$instance = new self();
 		$instance->loadByUserID($uid);
 		return $instance;
 	}
 	
+	/*	construct::initNewBusiness
+			initialize object with new business
+	*/
 	public static function initNewBusiness($data){
 		$instance = new self();
-		$instance->addUser($data);
+		$instance->addBusiness($data);
 		return $instance;
 
 	}
 	
+	/*	loadByID
+			retrieve business information and all business
+			entries with the provided businessID
+	*/
 	protected function loadByID($bid){
-		$this->db->filter( $uid );
-		$query = "SELECT * FROM Businesses WHERE BusinessID= '$bid' LIMIT 1";
-		$this->allData = $this->db->getRow( $query );
+		$this->db->query('SELECT * FROM businesses WHERE BusinessID = :bid');
+		$this->db->bind(':bid', $bid);
+		$this->db->execute();
+		$this->allData = $this->db->getRow();
 
+		$this->db->query('SELECT * FROM journals WHERE BusinessID = :bid');
+		$this->db->bind(':bid', $bid);
+		$this->db->execute();
+		$this->allEntries = $this->db->getRow();	
 	}
 	
+	/*	loadByUserID
+			retrieve business information and all business
+			entries with the provided userID
+	*/
 	protected function loadByUserID($uid){
-	
-		$this->db->filter( $uid );
-		$query = "SELECT * FROM Businesses WHERE UserID= '$uid' LIMIT 1";	
-		$this->allData = $this->db->getRow( $query );
+		$this->db->query('SELECT * FROM businesses WHERE UserID = :uid');
+		$this->db->bind(':uid', $uid);
+		$this->db->execute();
+		$this->allData = $this->db->getRow();	
+		// echo $this->allData['BusinessName'];
 
 		$bid = $this->allData['BusinessID'];
-		$query = "SELECT * FROM Journals WHERE BusinessID = '$bid'";
-		$this->allEntries = $this->db->getResults( $query );
+		$this->db->query('SELECT * FROM journals WHERE BusinessID = :bid');
+		$this->db->bind(':bid', $bid);
+		$this->db->execute();
+		$this->allEntries = $this->db->getRow();
 		
 	}
 	
+	/*	entriesFor
+			expects a month and year to retrieve all
+			entries made in that month
+	*/
 	public function entriesFor($month,$year){
-		$this->db->filter($month);
-		$this->db->filter($year);
-		$bid = $this->allData['BusinessID'];
-		$query = "SELECT * FROM Journals WHERE BusinessID = '$bid' AND YEAR(Date) = '$year' AND MONTH(Date) = '$month'";	
-		return $this->db->getResults($query);
+		$bid = $this->allData['BusinessID'];	
+		$this->db->query('SELECT * FROM journals WHERE BusinessID = :bid AND YEAR(Date) =:year AND MONTH(Date)=:month');
+		$this->db->bind(':bid', $bid);
+		$this->db->bind(':month', $month);
+		$this->db->bind(':year', $year);
+		$this->db->execute();	
+		return $this->db->getResults();
 	}
 	
-	public function addEntry($date,$sales,$expenses,$tCount){
+	/*	addEntry
+			expects an array of values to insert into the journal of
+			entries table. if entry already exists, values are updated
+			if not, a new row inserted with businessID 
+	*/
+	public function addEntry(array $data){
 
-		$this->db->filter($date);
-		$this->db->filter($sales);
-		$this->db->filter($expenses);
-		$this->db->filter($tCount);
-		
 		$time = date("H:i:s", strtotime("now"));
 		$bid = $this->allData['BusinessID'];
 		$uid = $this->allData['UserID'];
-
-		//check if entry already made for date
-		$query = "SELECT * FROM Journals WHERE BusinessID= '$bid' AND Date='$date' LIMIT 1";	
-		$row = $this->db->getRow( $query );
-		$entryID = $row['JournalID'];
-
-		if($entryID>0){
-			$updates = array(
-				'Time' => $time,
-				'NetSales' => $sales, 
-				'Expenses' => $expenses,
-				'TransactionCount' => $tCount
-			);
-			$where = array(
-				'JournalID' => $entryID
-			);
-			$updated = $this->db->update( 'Journals', $updates, $where, 1 );
-			if( $updated ) return 1;
-			else return 0;
+		
+		//update only
+		if($this->entryExists($data['date'])){
+			$entry = $this->entryByDate($data['date']);
+			$this->db->query('UPDATE journals SET Time = :time, NetSales = :sales, Expenses = :expenses, TransactionCount = :tc WHERE JournalID = :jid');
+			$this->db->bind(':time', $time);
+			$this->db->bind(':sales', $data['sales']);
+			$this->db->bind(':expenses', $data['expenses']);
+			$this->db->bind(':tc', $data['tCount']);
+			$this->db->bind(':jid', $entry['JournalID']);
+			$this->db->execute();
+			return 2;
+		//insert new row
 		}else{
-			$inserts = array(
-				'BusinessID' => $bid,
-				'UserID' =>  1,
-				'Date' => $date,
-				'Time' => $time,
-				'NetSales' => $sales,
-				'Expenses' => $expenses,
-				'TransactionCount' => $tCount
-			);
-			$addJournal = $this->db->insert( 'Journals', $inserts ); 
-			if( $addJournal ) return 1;
-			else return 0;
+			$this->db->query('INSERT INTO journals (BusinessID, UserID, Date, Time,NetSales, Expenses,TransactionCount) VALUES (:bid,:uid,:date,:time,:sales,:exp,:tc)');
+			$this->db->bind(':bid', $bid);
+			$this->db->bind(':uid', $uid);
+			$this->db->bind(':date', $data['date']);
+			$this->db->bind(':time', $time);
+			$this->db->bind(':sales', $data['sales']);
+			$this->db->bind(':exp', $data['expenses']);
+			$this->db->bind(':tc', $data['tCount']);
+			$this->db->execute();
+			return 1;
 		}
 	}
 	
+	/*	entryByDate
+			expects a date and will retrieve the entry made on that date
+	*/
 	public function entryByDate($date){
-		$this->db->filter($date);
-		$bid = $this->allData['BusinessID'];
-		$query = "SELECT * FROM Journals WHERE BusinessID= '$bid' AND Date='$date' LIMIT 1";	
-		return $this->db->getRow( $query );
+		$bid = $this->allData['BusinessID'];	
+		$this->db->query('SELECT * FROM journals WHERE BusinessID = :bid AND Date =:date');
+		$this->db->bind(':bid', $bid);
+		$this->db->bind(':date', $date);
+		$this->db->execute();
+		return $this->db->getRow();
 	}
 	
-	protected function __destruct(){
+	/*	entryByDate
+			expects a date and will determine if an entry exists
+	*/
+	public function entryExists($date){
+		$bid = $this->allData['BusinessID'];	
+		$this->db->query('SELECT * FROM journals WHERE BusinessID = :bid AND Date =:date');
+		$this->db->bind(':bid', $bid);
+		$this->db->bind(':date', $date);
+		$this->db->execute();
+		if($this->db->numRow() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public function addBusiness($data){
+		
+	}
+	public function __destruct(){
 		$this->destroy();
 	}
 	
-	protected function destroy(){
-		$this->db->disconnect();
+	private function destroy(){
 	}
 }
 ?>

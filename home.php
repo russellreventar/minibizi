@@ -1,3 +1,45 @@
+<!--
+MINIBIZI - Web Application for small business owners
+CSCI 3230U Final Project
+DEC 3, 2014 11:59pm
+Mark Reventar 100 429 397
+Arnold Cheng
+
+home.php
+	The main home page of the user when logged in
+	
+	- PopupCard
+		A hidden form that comes into display when user wants to add new daily
+		entry. Automatically opens with the current date. Datepicker allows user
+		to select any date and see if an entry has already been made for that date.
+		If so, placeholders in text show current data values for that date, 
+		if not, a new entry can be made. Multiple entries can be made without
+		closing the popupCard and when closed. The ui refreshes to dynamically change content
+	- Sidebar
+		A panel to display all current information on the users business. 
+			Top: show business logo and name and location
+			Information: show business opened date, phone number and full address
+			Stock: If stock name provided for business, google finance request for
+				stock information
+			Status: Status of entries for the day
+	- Header
+		Provide navigation throughout the website
+			Home) main dashboard for seeing daily entries
+			Employees) View employees
+			Income) See income statement
+			User Menu) Logout or go to profile
+	- Main
+		Business performance content for daily sales. Made up of two components
+			1) Chart
+				Button to add new daily entry(open popupCard)
+				Dropdown selectors to choose which month and year to see entries for
+				Data visualization chart to see sales,expenses and monthly target
+			2) Table
+				table of all entries for the selected month and year
+				dynamically populated with all information on each entry
+				profit, target margin, average sales etc
+
+-->
 <?php
     session_start();
     if (empty($_SESSION['id'])) {header("location:index.php");} 
@@ -7,11 +49,7 @@
 <html>
 <head>
     <?php include 'core/include/head.php';?>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/cupertino/jquery-ui.css">
-    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <!-- <script src="js/home.js" type="text/javascript"></script> -->
-    <!--  <script src="js/entries.js" type="text/javascript"></script> -->
     <script src="js/core.js" type="text/javascript"></script>
     <title>Home</title>
 </head>
@@ -160,7 +198,8 @@
 					</div>
                     <div class="entrySelector">
                     	<div class="addDaily2">
-                            Show entries for &nbsp <select id="month" class="custom-dropdown">
+                            Show entries for &nbsp 
+                            <select id="month" class="custom-dropdown">
                                 <option value="1">January</option>
                                 <option value="2">February</option>
                                 <option value="3"> March</option>
@@ -178,6 +217,9 @@
                                 <option value="2014">2014</option>
                                 <option value="2013">2013</option>
                                 <option value="2012">2012</option>
+                                <option value="2011">2011</option>
+                                <option value="2010">2010</option>
+                                <option value="2009">2009</option>
                             </select>
                        
                 
